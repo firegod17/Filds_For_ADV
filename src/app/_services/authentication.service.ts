@@ -20,7 +20,7 @@ export class AuthenticationService {
     }
 
     login(email: string, password: string) {
-        return this.http.post<any>(`auth/login`, { email, password })
+        return this.http.post<any>(`api/user/loginAdvertiser`, { email, password })
             .pipe(map(user => {
                 if (user && user.token) {
                     // store user details in local storage to keep user logged in

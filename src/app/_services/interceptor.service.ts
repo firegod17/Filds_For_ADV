@@ -16,8 +16,8 @@ export class InterceptorService implements HttpInterceptor {
     let reqUrl = environment.apiBaseUrl;
       req = req.clone({
         headers: req.headers.set(
-          "Authorization",
-          "Bearer " + localStorage.getItem("token")
+          "auth-token",
+          "" +localStorage.getItem("token")
         ),
         url: reqUrl +""+ req.url
       });
