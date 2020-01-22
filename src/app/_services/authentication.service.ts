@@ -24,7 +24,7 @@ export class AuthenticationService {
             .pipe(map(user => {
                 if (user && user.token) {
                     // store user details in local storage to keep user logged in
-                    localStorage.setItem('currentUser', JSON.stringify(user.result));
+                    localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
                 }
 
