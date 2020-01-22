@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^8.0.3",
     "@angular/platform-browser-dynamic": "^8.0.3",
     "@angular/router": "^8.0.3",
+    "http-headers": "^3.0.2",
     "ngx-toast": "^1.1.4",
     "ngx-toastr": "^10.2.0",
     "rxjs": "~6.4.0",

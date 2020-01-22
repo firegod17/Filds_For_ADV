@@ -22,8 +22,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      companyName: ['', Validators.required],
-      phone: ['', Validators.required],
+      companyName: ['', [Validators.required, Validators.minLength(2)]],
+      phone: ['',[ Validators.required, Validators.minLength(6)]],
       email: ['', [Validators.required,Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
   });
@@ -44,7 +44,8 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
      },
       (error)=>{
-        this.toastr.error(error.error.message, 'Error');
+        this.toastr.error(error.message, 'Error');
+        console.log(error.message);
         this.loading = false;
       }
     )
