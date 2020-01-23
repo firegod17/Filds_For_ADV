@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -21,6 +21,22 @@ export class AuthenticationService {
 
     login(email: string, password: string) {
         return this.http.post<any>(`api/user/loginAdvertiser`, { email, password })
+            .pipe(map(user => {
+                if (user && user.token) {
+                    // store user details in local storage to keep user logged in
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.currentUserSubject.next(user);
+                }
+
+                return user;
+            }));
+    }
+
+    checkStatus(token: string) {
+
+      const myHeaders = new HttpHeaders().set('auth-token', token);
+          
+        return this.http.get<any>(`api/checkStatus/Adv`, {headers:myHeaders})
             .pipe(map(user => {
                 if (user && user.token) {
                     // store user details in local storage to keep user logged in

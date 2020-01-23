@@ -9,6 +9,12 @@ import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
+  public currentUser;
+
+  constructor(
+  ) {
+    this.currentUser = localStorage.getItem('currentUser')? JSON.parse(localStorage.getItem('currentUser')) : '';
+   }
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
@@ -17,7 +23,7 @@ export class InterceptorService implements HttpInterceptor {
       req = req.clone({
         headers: req.headers.set(
           "auth-token",
-          "" + localStorage.getItem("token")
+          "" + this.currentUser.token
         ),
         url: reqUrl +""+ req.url
       });
