@@ -1,0 +1,42 @@
+.firststep_adv {
+  display: flex;
+  flex-direction: column;
+}
+
+.firststep_adv > * {
+  width: 100%;
+   color: #000;
+}
+
+  .mat-focused .placeholder {
+    color: red !important;
+}
+.mat .input {
+  color:red;
+}
+
+.mat-label {
+  color: red;
+}
+
+.mat-form-field-label {
+    color: green !important;
+    font-size: 20px;
+}
+.mat-input-container label {
+  color: red;
+}
+
+/* /deep/ label.mat-input-placeholder {
+  color: #fff;   // choose the color you want
+}
+.firststep_adv {
+  .mat-form-field-outline,
+  .mat-form-field-empty.mat-form-field-label,
+  .mat-form-field-label,
+  .mat-form-field-underline,
+  .mat-input-element,
+  ::placeholder {
+    color: #black !important;
+  }
+} */

@@ -1,2 +1,36 @@
 <h1>Hi {{currentUser.companyName}}!</h1>
 <p>Welcome to home page!!</p>
+<!-- <button mat-raised-button *ngIf="currentUser" color="primary"  (click)="logout()">Logout</button> -->
+
+<form class="firststep_adv" [formGroup]="first_adv_form" (ngSubmit)="onFormSubmit()">
+  <mat-form-field>
+    <input matInput placeholder="km"  formControlName="km">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Numb of cars"  formControlName="numb_cars">
+  </mat-form-field>
+  <mat-form-field>
+  <mat-label>Cars</mat-label>
+  <mat-select [(value)]="selected" matInput formControlName="car">
+    <mat-option value="volvo">Volvo</mat-option>
+    <mat-option value="saab">Saab</mat-option>
+    <mat-option value="mercedes">Mercedes</mat-option>
+    <mat-option value="audi">Audi</mat-option>
+  </mat-select>
+</mat-form-field>
+<p>You selected: {{selected}}</p>
+
+  <mat-form-field>
+    <mat-select placeholder="Select" matInput formControlName="type_car">
+      <mat-option value="option">Low</mat-option>
+      <mat-option value="option">Standart</mat-option>
+      <mat-option value="option">Max</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+<mat-form-field>
+  <input matInput [matDatepicker]="picker" matInput placeholder="Choose_date" formControlName="data_start" >
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+</form>
