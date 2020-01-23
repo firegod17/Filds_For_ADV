@@ -22,9 +22,9 @@
 
   <mat-form-field>
     <mat-select placeholder="Select" matInput formControlName="type_car">
-      <mat-option value="option">Low</mat-option>
-      <mat-option value="option">Standart</mat-option>
-      <mat-option value="option">Max</mat-option>
+      <mat-option value="Low">Low</mat-option>
+      <mat-option value="Standart">Standart</mat-option>
+      <mat-option value="Max">Max</mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -33,4 +33,8 @@
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
+<button mat-raised-button [disabled]="loading" color="primary">
+    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+    Verified
+</button>
 </form>

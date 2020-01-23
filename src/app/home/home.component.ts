@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { HttpService } from '../_services';
 
 @Component({
   selector: 'app-home',
@@ -8,22 +12,23 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  loginForm: FormGroup;
+  first_adv_form: FormGroup;
   loading = false;
   submitted = false;
   returnUrl: string;
   public currentUser;
 
-  first_adv_form: FormGroup;
-  constructor(private formBuilder: FormBuilder,
-
-
-
-) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private httpService : HttpService,
+    private toastr: ToastrService
+  ) {
     this.currentUser = localStorage.getItem('currentUser')? JSON.parse(localStorage.getItem('currentUser')) : '';
    }
 
-  ngOnInit() {
+   ngOnInit() {
 
     this.first_adv_form = this.formBuilder.group({
       km: ['', Validators.required],
@@ -31,29 +36,30 @@ export class HomeComponent implements OnInit {
       car: ['', Validators.required],
       type_car: ['', Validators.required],
       data_start: ['', Validators.required],
-
     });
-
-             this.loading = false;
-         };
-
-  email = new FormControl('', [Validators.required, Validators.email]);
-
- getErrorMessage() {
-   return this.email.hasError('required') ? 'You must enter a value' :
-       this.email.hasError('email') ? 'Not a valid email' :
-           '';
- }
- onSubmit() {
-
-    // stop here if form is invalid
-    if (this.first_adv_form.invalid) {
-        return;
     }
-    var dataObj={fields:this.first_adv_form.value}
 
-    
-}
+    get fval() { return this.first_adv_form.controls; }
+
+ onFormSubmit() {
+   this.submitted = true;
+   if (this.first_adv_form.invalid) {
+     return;
+   }
+   this.loading = true;
+   this.httpService.addInfoAdv(this.currentUser.token.value, this.fval.km.value, this.fval.numb_cars.value, this.fval.car.value, this.fval.type_car.value, this.fval.data_start.value)
+      .subscribe(
+          data => {
+            this.router.navigate(['/']);
+          },
+          error => {
+            this.toastr.error(error.message, 'Error');
+            console.log(error.message);
+
+            this.loading = false;
+          });
+
+  }
 }
 
 
