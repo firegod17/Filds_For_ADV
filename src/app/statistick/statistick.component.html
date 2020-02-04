@@ -1,0 +1,15 @@
+<h1>Hi {{currentUser.companyName}}!</h1>
+<p>Welcome to home page!!</p>
+<!-- <button mat-raised-button *ngIf="currentUser" color="primary"  (click)="logout()">Logout</button> -->
+<table style="padding: 20px; width: 60%;">
+    <tr>
+      <th  align="left">id</th>
+      <th  align="left">status</th>
+      <th  align="left">name</th>
+    </tr>
+    <tr *ngFor="let item of myRecCollection">
+      <td>{{item.car}}</td>
+      <td>{{item.status}}</td>
+      <td>{{item.name}}</td>
+    </tr>
+</table>

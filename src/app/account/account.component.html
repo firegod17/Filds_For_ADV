@@ -1,0 +1,22 @@
+<h1>Hi {{currentUser.companyName}}!</h1>
+<p>Welcome to home page!!</p>
+<!-- <button mat-raised-button *ngIf="currentUser" color="primary"  (click)="logout()">Logout</button> -->
+<h3>Name Of Your Company</h3>
+<p>{{currentUser.companyName}} </p>
+<h3>Yoyr Email</h3>
+<p>{{currentUser.email}} </p>
+<h4>Info about your order</h4>
+<h6>Km: </h6>
+<p>{{currentUser.km}} </p>
+<h6>Car: </h6>
+<p>{{currentUser.car}} </p>
+<h6>Type of car: </h6>
+<p>{{currentUser.type_car}} </p>
+<h6>Count of cars: </h6>
+<p>{{currentUser.numb_cars}} </p>
+<h6>Start: </h6>
+<p>{{currentUser.data_start}} </p>
+<button mat-raised-button  (click)="statistick()" [disabled]="loading" color="primary">
+    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+    Statistick
+</button>

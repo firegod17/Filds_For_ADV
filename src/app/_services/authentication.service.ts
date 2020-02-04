@@ -31,6 +31,12 @@ export class AuthenticationService {
                 return user;
             }));
     }
+    statistick() {
+        return this.http.get<any>(`api/getStatistickAdv`)
+            .pipe(map(user => {
+                return user;
+            }));
+    }
 
     checkStatus(token: string) {
 

@@ -3,7 +3,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { AuthenticationService } from '../_services';
 import { HttpService } from '../_services';
 
 @Component({
@@ -23,21 +23,22 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private httpService : HttpService,
+    private authenticationService : AuthenticationService,
     private toastr: ToastrService
   ) {
     this.currentUser = localStorage.getItem('currentUser')? JSON.parse(localStorage.getItem('currentUser')) : '';
+    this.authenticationService.checkStatus(this.currentUser.token)
    }
 
    ngOnInit() {
-
-    this.first_adv_form = this.formBuilder.group({
+     this.first_adv_form = this.formBuilder.group({
       km: ['', Validators.required],
       numb_cars: ['', Validators.required],
       car: ['', Validators.required],
       type_car: ['', Validators.required],
       data_start: ['', Validators.required],
     });
-    }
+  }
 
     get fval() { return this.first_adv_form.controls; }
 
@@ -47,10 +48,10 @@ export class HomeComponent implements OnInit {
      return;
    }
    this.loading = true;
-   this.httpService.addInfoAdv(this.currentUser.token.value, this.fval.km.value, this.fval.numb_cars.value, this.fval.car.value, this.fval.type_car.value, this.fval.data_start.value)
+   this.httpService.addInfoAdv(this.currentUser.token, this.fval.km.value, this.fval.numb_cars.value, this.fval.car.value, this.fval.type_car.value, this.fval.data_start.value)
       .subscribe(
           data => {
-            this.router.navigate(['/']);
+            this.router.navigate(['/account']);
           },
           error => {
             this.toastr.error(error.message, 'Error');

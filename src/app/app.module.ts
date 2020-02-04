@@ -14,6 +14,8 @@ import { HttpService } from './_services/http.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { AccountComponent } from './account/account.component';
+import { StatistickComponent } from './statistick/statistick.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -30,7 +32,9 @@ import {MatButtonModule} from '@angular/material/button';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    AccountComponent,
+    StatistickComponent
   ],
   imports: [
     BrowserModule,
