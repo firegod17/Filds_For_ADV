@@ -33,6 +33,15 @@
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
+<mat-form-field>
+  <mat-select placeholder="Period of exebition" matInput formControlName="periodOfExcebition">
+    <mat-option value=1>1</mat-option>
+    <mat-option value=2>2</mat-option>
+    <mat-option value=3>3</mat-option>
+    <mat-option value=4>4</mat-option>
+    <mat-option value=5>5</mat-option>
+  </mat-select>
+</mat-form-field>
 <button mat-raised-button [disabled]="loading" color="primary">
     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
     Verified

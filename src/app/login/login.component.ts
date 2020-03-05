@@ -47,10 +47,10 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/account']);
             },
             error => {
-              this.toastr.error(error.message, 'Error');
-              console.log(error.message);
+              this.toastr.error(error.error, 'Error status: ' + error.status);
+              console.log(error);
 
-                this.loading = false;
+              this.loading = false;
             });
   }
 }

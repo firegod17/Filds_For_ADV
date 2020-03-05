@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import { User } from '../_models';
 
 @Injectable({ providedIn: 'root' })
@@ -20,11 +19,25 @@ export class HttpService {
       return this.currentUserSubject.value;
   }
 
-  addInfoAdv(token: string, km: string, numb_cars: string, car: string, type_car: string, data_start: string) {
-      return this.http.put<any>(`api/account/addInfoAdv`, { km, numb_cars, car, type_car, data_start })
+  addInfoAdv(
+    token: string,
+    km: number,
+    numb_cars: number,
+    car: string,
+    type_car: string,
+    data_start: string,
+    periodOfExcebition: number) {
+      return this.http.put<any>(`api/account/addInfoAdv`, {
+        km,
+        numb_cars,
+        car,
+        type_car,
+        data_start,
+        periodOfExcebition
+      })
           .pipe(map(user => {
-                  // store user details in local storage to keep user logged in
-                  localStorage.setItem('currentUser', JSON.stringify(user));
+              // store user details in local storage to keep user logged in
+              localStorage.setItem('currentUser', JSON.stringify(user));
               return user;
           }));
   }

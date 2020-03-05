@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
       car: ['', Validators.required],
       type_car: ['', Validators.required],
       data_start: ['', Validators.required],
+      periodOfExcebition: ['', Validators.required],
     });
   }
 
@@ -48,14 +49,21 @@ export class HomeComponent implements OnInit {
      return;
    }
    this.loading = true;
-   this.httpService.addInfoAdv(this.currentUser.token, this.fval.km.value, this.fval.numb_cars.value, this.fval.car.value, this.fval.type_car.value, this.fval.data_start.value)
+   this.httpService.addInfoAdv(
+     this.currentUser.token,
+     this.fval.km.value,
+     this.fval.numb_cars.value,
+     this.fval.car.value,
+     this.fval.type_car.value,
+     this.fval.data_start.value,
+     this.fval.periodOfExcebition.value)
       .subscribe(
           data => {
             this.router.navigate(['/account']);
           },
           error => {
             this.toastr.error(error.message, 'Error');
-            console.log(error.message);
+            console.log(error);
 
             this.loading = false;
           });
