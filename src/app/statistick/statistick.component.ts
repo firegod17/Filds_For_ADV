@@ -17,12 +17,12 @@ export class StatistickComponent implements OnInit {
   public myRecCollection;
 
   constructor(
-    private authenticationService : AuthenticationService,
+    private authenticationService: AuthenticationService,
     private toastr: ToastrService,
     private router: Router,
 
   ) {
-    this.currentUser = localStorage.getItem('currentUser')? JSON.parse(localStorage.getItem('currentUser')) : '';
+    this.currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : '';
    }
 
    ngOnInit() {
