@@ -20,12 +20,18 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {MatIconModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import {MatIconModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatProgressBarModule} from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonModule} from '@angular/material/button';
-
-
+import {MatGridListModule} from '@angular/material/grid-list';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+// import { ChartsModule, WavesModule } from 'angular-bootstrap-md';
+import {MatTableModule} from '@angular/material/table';
+import * as moment from 'moment';
+import { DistrictsComponent } from './districts/districts.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -34,7 +40,9 @@ import {MatButtonModule} from '@angular/material/button';
     RegisterComponent,
     HomeComponent,
     AccountComponent,
-    StatistickComponent
+    StatistickComponent,
+    AnalyticsComponent,
+    DistrictsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,13 +55,21 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatTableModule,
+    MatProgressBarModule,
+    MDBBootstrapModule.forRoot(),
+    // ChartsModule,
+    // WavesModule,
     MatDatepickerModule,
+    MatFormFieldModule,
     MatNativeDateModule,
     MatButtonModule,
+    MatGridListModule,
+    MatToolbarModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot()
   ],
-  providers: [UserService, HttpService,{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }], //
+  providers: [UserService, HttpService, { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }], //
   bootstrap: [AppComponent]
 })
 export class AppModule { }

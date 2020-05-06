@@ -7,6 +7,8 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { AccountComponent } from './account/account.component';
 import { StatistickComponent } from './statistick/statistick.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import {DistrictsComponent} from './districts/districts.component';
 
 
 
@@ -21,6 +23,15 @@ const routes: Routes = [
     path: 'statistick',
     component: StatistickComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'analytics',
+    component: AnalyticsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'districts',
+    component: DistrictsComponent
   },
   {
     path: 'login',

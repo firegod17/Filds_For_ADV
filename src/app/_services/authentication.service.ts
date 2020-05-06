@@ -37,12 +37,21 @@ export class AuthenticationService {
                 return user;
             }));
     }
+    wallet(token: string) {
+      const myHeaders = new HttpHeaders().set('auth-token', token);
+
+      return this.http.get<any>(`api/checkStatus/AdvFullInfo`, {headers: myHeaders})
+        .pipe(map(user => {
+          console.log(user);
+          return user;
+        }));
+    }
 
     checkStatus(token: string) {
 
       const myHeaders = new HttpHeaders().set('auth-token', token);
           
-        return this.http.get<any>(`api/checkStatus/Adv`, {headers:myHeaders})
+        return this.http.get<any>(`api/checkStatus/Adv`, {headers: myHeaders})
             .pipe(map(user => {
                 if (user && user.token) {
                     // store user details in local storage to keep user logged in

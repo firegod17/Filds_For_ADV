@@ -31,6 +31,10 @@ export class AccountComponent implements OnInit {
     this.loading = true;
     this.router.navigate(['/statistick']);
   }
+  home() {
+    this.loading = true;
+    this.router.navigate(['/home']);
+  }
  onSubmit() {
 
   }

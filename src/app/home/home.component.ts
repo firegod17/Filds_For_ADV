@@ -22,12 +22,12 @@ export class HomeComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private httpService : HttpService,
-    private authenticationService : AuthenticationService,
+    private httpService: HttpService,
+    private authenticationService: AuthenticationService,
     private toastr: ToastrService
   ) {
-    this.currentUser = localStorage.getItem('currentUser')? JSON.parse(localStorage.getItem('currentUser')) : '';
-    this.authenticationService.checkStatus(this.currentUser.token)
+    this.currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : '';
+    this.authenticationService.checkStatus(this.currentUser.token);
    }
 
    ngOnInit() {
