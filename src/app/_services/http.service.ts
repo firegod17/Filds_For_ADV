@@ -41,6 +41,24 @@ export class HttpService {
               return user;
           }));
   }
+  walletAdd(inputMoney: number, token: string) {
+    const myHeaders = new HttpHeaders().set('auth-token', token);
+    const inputmoney = inputMoney;
+    console.log(inputmoney);
+    return this.http.post<any>(`api/money/advPay`, {money: inputmoney}, {headers: myHeaders})
+      .pipe(map(user => {
+        console.log(user);
+        return user;
+      }));
+  }
+  district(): Observable<any> {
+    // const myHeaders = new HttpHeaders().set('auth-token', token);
+    return this.http.get('assets/kyiv.34272c8c.json')
+      .pipe(map((response: Response) => {
+        console.log('mock data' + response.json());
+        return response.json();
+      }));
+  }
 
   ngOnInit() {
 

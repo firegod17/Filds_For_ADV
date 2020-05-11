@@ -37,7 +37,7 @@ export class AuthenticationService {
                 return user;
             }));
     }
-    wallet(token: string) {
+     wallet(token: string) {
       const myHeaders = new HttpHeaders().set('auth-token', token);
 
       return this.http.get<any>(`api/checkStatus/AdvFullInfo`, {headers: myHeaders})
@@ -46,6 +46,8 @@ export class AuthenticationService {
           return user;
         }));
     }
+
+
 
     checkStatus(token: string) {
 

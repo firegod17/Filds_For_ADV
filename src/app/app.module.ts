@@ -27,12 +27,20 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
-// import { ChartsModule, WavesModule } from 'angular-bootstrap-md';
+// import { ChartsModule } from '@progress/kendo-angular-charts';
 import {MatTableModule} from '@angular/material/table';
-import * as moment from 'moment';
+import { ChartsModule, WavesModule } from 'angular-bootstrap-md';
+// import * as moment from 'moment';
 import { DistrictsComponent } from './districts/districts.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
+// import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import 'hammerjs';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import { DocumentsComponent } from './documents/documents.component';
+import {MatFileUploadModule} from 'angular-material-fileupload';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +50,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     AccountComponent,
     StatistickComponent,
     AnalyticsComponent,
-    DistrictsComponent
+    DistrictsComponent,
+    DocumentsComponent
   ],
   imports: [
     BrowserModule,
@@ -57,17 +66,23 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     MatRadioModule,
     MatTableModule,
     MatProgressBarModule,
-    MDBBootstrapModule.forRoot(),
-    // ChartsModule,
-    // WavesModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
+    BrowserAnimationsModule,
+    ChartsModule,
+    ScrollingModule,
+    WavesModule,
+    MatIconModule,
     MatButtonModule,
     MatGridListModule,
     MatToolbarModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatSidenavModule,
+    MatDividerModule,
+    MatListModule,
+    MatFileUploadModule
   ],
   providers: [UserService, HttpService, { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }], //
   bootstrap: [AppComponent]

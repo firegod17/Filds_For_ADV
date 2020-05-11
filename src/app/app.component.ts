@@ -12,7 +12,7 @@ import { User } from './_models';
 })
 export class AppComponent {
   currentUser: User;
-
+  public openSideBar = true;
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
@@ -21,7 +21,13 @@ export class AppComponent {
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
       this.httpService.currentUser.subscribe(x => this.currentUser = x);
   }
-
+  sidebarOpen() {
+    if (this.openSideBar) {
+      this.openSideBar = false;
+    } else {
+      this.openSideBar = true;
+    }
+  }
   logout() {
     this.authenticationService.logout();
     this.httpService.logout();

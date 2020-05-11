@@ -9,6 +9,7 @@ import { AccountComponent } from './account/account.component';
 import { StatistickComponent } from './statistick/statistick.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import {DistrictsComponent} from './districts/districts.component';
+import {DocumentsComponent} from './documents/documents.component';
 
 
 
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'documents',
+    component: DocumentsComponent
   },
   {
     path: 'register',

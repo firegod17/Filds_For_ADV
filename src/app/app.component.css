@@ -3,4 +3,29 @@
 /*}*/
 h1{
   font-size: 40px;
+  font-weight: 400;
 }
+
+.side-navbar{
+  width: 10%;
+  background-color: #313a46;
+}
+.button-sideBar{
+ box-shadow: none;
+}
+
+
+.list-sideBar{
+  /*margin-top: px;*/
+  color: #7f8a99;
+  text-align: center;
+}
+.mat-divider{
+  border-top-color: red;
+}
+.list-sideBar span {
+  color: white;
+  font-weight: 300;
+  color: #7f8a99;
+}
+

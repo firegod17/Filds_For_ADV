@@ -30,10 +30,8 @@
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
-
-              "node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js",
-              "node_modules/chart.js/dist/Chart.js"
-
+              "node_modules/chart.js/dist/Chart.js",
+              "node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js"
             ]
           },
           "configurations": {
