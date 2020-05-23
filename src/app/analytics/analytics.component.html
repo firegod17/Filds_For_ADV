@@ -1,0 +1,291 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-2">
+        <div  style="display: inline-block; margin-top:30px;"><h2>Driv<span style="color: #ffcb17">vy</span></h2></div>
+        <mat-divider></mat-divider>
+        <h3>Analytics</h3>
+    </div>
+    <div class="col-md-10">
+<!--      <div class="card">-->
+        <div class="row">
+          <div class="col-md-5"><div class="card card-first"><h5>Имя компании</h5><span>{{currentUser.companyName}}</span></div></div>
+          <div class="col-md-5"><div class="card card-first"><h5>ФИО</h5> <span>{{currentUser.email}}</span></div></div>
+          <div class="col-md-2"><div class="card card-first"><h5 *ngIf="currentUser.status === 'verified'">Verify</h5> 	<mat-icon color="primary" *ngIf="currentUser.status === 'verified'">verified_user</mat-icon>
+            <h5 *ngIf="currentUser.status === 'unverified'">Unverified</h5> <mat-icon color="warn" *ngIf="currentUser.status === 'unverified'">highlight_off</mat-icon></div></div>
+        </div>
+
+<!--        <ul>-->
+<!--        <li>Имя компании: {{currentUser.companyName}}</li>-->
+<!--         <li>ФИО рекламодателя: {{currentUser.email}}</li>-->
+<!--        </ul>-->
+<!--        <p>Status of verify: 	<mat-icon color="primary" *ngIf="currentUser.status === 'verified'">check_circle</mat-icon>-->
+<!--          <mat-icon color="warn" *ngIf="currentUser.status === 'unverified'">highlight_off</mat-icon></p>-->
+<!--      </div>-->
+    </div>
+    <div class="col-md-12">
+      <div class="card">
+        <mat-form-field>
+          <mat-label>Choose campaign</mat-label>
+          <mat-select [(ngModel)]="selectedCampaign"  >
+            <div *ngFor="let AdditionalInfo of AdditionalInfos; let i = index">
+              <mat-option value="{{i}}" (click)="changeCampaign(i)">{{AdditionalInfo.companyName + i}}</mat-option>
+            </div>
+
+          </mat-select>
+        </mat-form-field>
+        <p>{{selectedCampaign}}</p>
+      </div>
+    </div>
+    <div *ngIf="selectedCampaign !== false" class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <h3>Campaign Time</h3>
+              <div class="row">
+                <div class="col-md-6 time-status">        <p>Start: <br> {{DateOfStart | date:'mediumDate'}}</p>
+                </div>
+                <div class="col-md-6 time-end time-status">        <p>End: <br> {{DateOfEnd | date:'mediumDate'}}</p>
+                </div>
+              </div>
+              <!--        <p>Data today: {{curDate | date:'medium'}}</p>-->
+              <!--        <p>Data of end: {{DaysOfAdv}}</p>-->
+              <mat-progress-bar
+                [mode]="mode"
+                [value]="value"
+                [color]="colorProgress"
+                [bufferValue]="bufferValue"
+              ></mat-progress-bar>
+              <p class="time-status" style="margin-top: 10px;">{{TimeStatus}}</p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="card">
+              <div class="row">
+                <div class="col-md-6"><h3>Wallet</h3><mat-icon color="primary">account_balance_wallet</mat-icon></div>
+                <div class="col-md-6 wallet-style"> <span *ngIf="loadingAll" class="spinner-border spinner-border-sm mr-1"></span>
+                  <h5 *ngIf="!loadingAll">Money on wallet:</h5> <span>{{myWallet.wallet}} ₴</span>  <span class="trendMoney" *ngIf="myWallet.wallet > 0"><mat-icon color="primary">trending_up</mat-icon>{{  LastChildHistory.money  }} ₴</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <h3>Cars in your campaign </h3>
+          <span *ngIf="loadingAll" class="spinner-border spinner-border-sm mr-1"></span>
+          <!--        <table table table-trapped *ngIf="!loadingAll">-->
+          <!--          <thead>-->
+          <!--          <tr>-->
+          <!--            <th>Car</th>-->
+          <!--            <th>Status</th>-->
+          <!--            <th>Name</th>-->
+          <!--&lt;!&ndash;            <th>Distance</th>&ndash;&gt;-->
+          <!--          </tr>-->
+          <!--          </thead>-->
+          <!--          <tbody *ngIf="TableU !== null" >-->
+          <!--          <tr *ngFor="let data of TableU">-->
+          <!--            <td>{{data.car}}</td>-->
+          <!--            <td>{{data.status}}</td>-->
+          <!--            <td>{{data.name}}</td>-->
+          <!--&lt;!&ndash;            <td>{{abs(data.totalDistance)}}</td>&ndash;&gt;-->
+          <!--          </tr>-->
+          <!--          </tbody>-->
+          <!--          <tbody *ngIf="TableU === null" >-->
+          <!--          <tr>No cars</tr>-->
+          <!--          </tbody>-->
+          <!--        </table>-->
+          <table mat-table [dataSource]="dataT" class="example-table" *ngIf="!loadingAll">
+            <!-- Number Column -->
+            <ng-container matColumnDef="car">
+              <th mat-header-cell *matHeaderCellDef>Car</th>
+              <td mat-cell *matCellDef="let row">{{row.car}}</td>
+            </ng-container>
+
+            <!-- Title Column -->
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>Status</th>
+              <td mat-cell *matCellDef="let row">{{row.status}}</td>
+            </ng-container>
+
+            <!-- State Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let row">{{row.name}}</td>
+            </ng-container>
+
+            <!-- Created Column -->
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <div class="value-cars">
+            <div class="first-flex">
+              <h5>Cars online</h5>
+              <mat-divider></mat-divider>
+              <span> {{TableU.length}}<mat-icon style="margin-left: 10px;" color="primary">time_to_leave</mat-icon></span>
+            </div>
+
+            <div class="second-flex">
+              <h5>Cars in your campaign</h5>
+              <mat-divider></mat-divider>
+              <span>{{numbAllCars}}<mat-icon style="margin-left: 10px;" color="primary">time_to_leave</mat-icon></span>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-12">
+
+              <div class="row">
+                <div class="col-md-6">
+                  <h3>Additional wallet</h3>
+                  <h5 *ngIf="statusCampaign && timeStatusWallet">Campaign started<mat-icon color="primary">cake</mat-icon></h5>
+                  <h5 *ngIf="statusCampaign && !timeStatusWallet">Campaign will start<mat-icon color="primary">cake</mat-icon></h5>
+                  <h5 *ngIf="!statusCampaign">Pay minimal total	<mat-icon color="warn">report_problem</mat-icon></h5>
+                </div>
+                <div class="col-md-6 campaign-status-wallet" >
+                  <span *ngIf="loadingAll" class="spinner-border spinner-border-sm mr-1"></span>
+                  <div *ngIf="!loadingAll">
+                    <h5 *ngIf="moneyToPay">To start campaign pay:</h5> <span *ngIf="moneyToPay">{{(moneyToPay)}}</span>
+                    <h5 *ngIf="!moneyToPay && currentUser.status !== 'unverified'">Campaign was completely paid  <mat-icon color="primary" >done_all</mat-icon> </h5>
+                    <mat-progress-bar class="progress-wallet"
+                                      [mode]="modeMoney"
+                                      [value]="valueMoney"
+                                      [bufferValue]="bufferValue"
+                    ></mat-progress-bar>
+                    <h5>Paid:<span>{{myWallet.wallet}} ₴</span></h5>
+                  </div>
+                </div>
+
+                <div class="col-md-5">
+                  <h4 class="virtual-scroll-wallet">History transactions</h4>
+                  <!--                <div class="card recursion-card">-->
+                  <span *ngIf="loadingAll" class="spinner-border spinner-border-sm mr-1"></span>
+                  <cdk-virtual-scroll-viewport  [itemSize] = "20" class="viewport-money" *ngIf="!loadingAll && histWallets.length !== 0">
+                    <ul class="ulforwallet"  *ngFor="let histWallet of histWallets">
+                      <li *ngIf="histWallet.money !== 0"><mat-icon color='primary'>access_time</mat-icon>{{histWallet.data | date: 'medium'}}</li>
+                      <li *ngIf="histWallet.money !== 0"><mat-icon color='primary' >payment</mat-icon>Value: <span>{{histWallet.money}} ₴</span></li>
+                      <mat-divider></mat-divider>
+                    </ul>
+                  </cdk-virtual-scroll-viewport>
+                  <span class="warn-empty" *ngIf="histWallets.length === 0">
+                    History empty<mat-icon color="warn">report_problem</mat-icon>
+                  </span>
+                  <!--                </div>-->
+                </div>
+
+                <div class="col-md-6 custom-offset">
+                  <h4 style="margin-top: 40px;">Pay function</h4>
+                  <form class="districtStyle wallet-button-container" [formGroup]="formMoney" (ngSubmit)="onFormSubmit()">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Pay</mat-label>
+                          <input matInput placeholder="Value of грн" formControlName="InputMoney">
+                          <mat-hint>$</mat-hint>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-6">
+                        <div >
+                          <button mat-fab disabled class="buttom-wallet" [disabled]="loading" style="box-shadow: none">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            <mat-icon>credit_card</mat-icon>
+                          </button>
+                        </div>
+                        <!--                      <button mat-raised-button [disabled]="loading" color="warn" class="buttom-wallet">-->
+                        <!--                        -->
+                        <!--                        Submit-->
+                        <!--                      </button>-->
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <h3>Wallet of campaigns</h3>
+
+          <h5 *ngIf="statusCampaign && timeStatusWallet">Campaign started<mat-icon color="primary">cake</mat-icon></h5>
+          <h5 *ngIf="statusCampaign && !timeStatusWallet">Campaign will start<mat-icon color="primary">cake</mat-icon></h5>
+          <h5 *ngIf="!statusCampaign">Pay minimal total	<mat-icon color="warn">report_problem</mat-icon></h5>
+          <button mat-fab class="buttom-wallet" (click)="startCampaign()" [disabled]="loading || statusCampaign" style="box-shadow: none">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            <mat-icon>credit_card</mat-icon>
+          </button>
+
+      </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <div style="display: block">
+            <canvas mdbChart
+                    [chartType]="chartType"
+                    [datasets]="chartDatasets"
+                    [labels]="chartLabels"
+                    [colors]="chartColors"
+                    [options]="chartOptions"
+                    [legend]="true"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+          </div>
+        </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div style="display: block">
+            <canvas mdbChart
+                    [chartType]="chartTypeCampaigns"
+                    [datasets]="chartDatasetsCampaigns"
+                    [labels]="chartLabelsCampaigns"
+                    [colors]="chartColorsCampaigns"
+                    [options]="chartOptions"
+                    [legend]="true"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="card">
+          <div style="display: block">
+            <canvas mdbChart
+                    [chartType]="chartTypeLine"
+                    [datasets]="chartDatasetsLine"
+                    [labels]="chartLabelsLine"
+                    [colors]="chartColorsLine"
+                    [options]="chartOptions"
+                    [legend]="true"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div id="map"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+

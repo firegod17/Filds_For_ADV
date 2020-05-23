@@ -1,0 +1,10 @@
+.documents-main{
+  height: 500px;
+}
+.agreement-section{
+  height: 200px;
+  width: 100%;
+}
+mat-card{
+  margin-top: 50px;
+}

@@ -1,0 +1,62 @@
+
+  <form class="districtStyle" [formGroup]="formDistrict" (ngSubmit)="onFormSubmit()">
+    <div class="row">
+    <div class="col-md-4"><mat-form-field appearance="fill">
+      <mat-label>Select district</mat-label>
+      <mat-select matInput formControlName="district">
+        <mat-option value="Шевченківський">Шевченківський</mat-option>
+        <mat-option value="Солом´янський">Солом´янський</mat-option>
+        <mat-option value="Святошинський">Святошинський</mat-option>
+        <mat-option value="Подільський">Подільський</mat-option>
+        <mat-option value="Печерський">Печерський</mat-option>
+        <mat-option value="Оболонський">Оболонський</mat-option>
+        <mat-option value="Дніпровський">Дніпровський</mat-option>
+        <mat-option value="Деснянський">Деснянський</mat-option>
+        <mat-option value="Дарницький">Дарницький</mat-option>
+        <mat-option value="Голосіївський">Голосіївський</mat-option>
+      </mat-select>
+    </mat-form-field></div>
+    <div class="col-md-4"><p>
+      <mat-form-field appearance="outline">
+        <mat-label>Latitude</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="Latitude">
+        <mat-hint>30°50'37.8"E</mat-hint>
+      </mat-form-field>
+    </p></div>
+    <div class="col-md-4"><p>
+      <mat-form-field appearance="outline">
+        <mat-label>Longitude</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="Longitude">
+        <mat-hint>49°38'02.0"N </mat-hint>
+      </mat-form-field>
+    </p>
+    </div>
+      <div class="col-md-1 offset-md-10"><button mat-raised-button [disabled]="loading" color="warn">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        Submit
+      </button></div>
+
+    </div>
+  </form>
+<table class="table table-trapped">
+  <thead>
+  <tr>
+    <th>District</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <!--            <th>Distance</th>-->
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of tableInfoDistrict">
+    <td>{{data.district}}</td>
+    <td>{{data.Latitude}}</td>
+    <td>{{data.Longitude}}</td>
+<!--    <td>{{data.Longitude.value}}</td>-->
+<!--    <td>{{data.Latitude.value}}</td>-->
+    <!--            <td>{{abs(data.totalDistance)}}</td>-->
+  </tr>
+  </tbody>
+</table>
+
+

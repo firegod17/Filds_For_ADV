@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #333;
+}
+h3{
+  font-weight: lighter;
+  color: #6c757d;
+}
+h4{
+  font-weight: lighter;
+}
+h5{
+  font-weight: lighter;
+}
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #666;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+}
+
+.btn {
+  display: inline-block;
+  background: #333333;
+  color: #fff;
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+}
+.btn:disabled {
+  background: #ccc;
+  color: #000;
+  cursor: not-allowed;
+}
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn.btn-danger {
+  background: #dc3545;
+  color: #fff;
+}
+
+.form-control {
+  display: block;
+  margin-top: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+.form-control label {
+  display: block;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.form-control input {
+  margin-bottom: 0;
+}
+.form-control .validation {
+  color: red;
+}
+
+.card {
+  padding: 1rem;
+  border: none;
+  margin: 1rem;
+}
+.card p {
+  display: flex;
+  justify-content: space-between;
+}
+.card p span.completed {
+  text-decoration: line-through;
+}
+.card-first{
+  height: 80%;
+}
+.card-first span{
+  margin-top: 10px;
+  color: #677c8f;
+  font-weight: 300;
+  font-size: 30px;
+}
+.card-first mat-icon{
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+}
+.wallet-style span{
+  margin-top: 10px;
+  color: #677c8f;
+  font-weight: 300;
+  font-size: 30px;
+}
+
+hr {
+  margin: 0.5rem 0;
+}
+.ulforwallet li:last-child{
+  margin-bottom: 10px;
+}
+/*.ulforwallet{*/
+
+/*}*/
+.time-end{
+  text-align: end;
+  float: right;
+}
+.time-end p {
+  float: right;
+}
+.viewport-money{
+  height: 200px;
+  width: 100%;
+}
+.buttom-wallet{
+  float: right;
+  margin-right: 0;
+}
+.wallet-button-container{
+  margin-top: 20px;
+}
+.time-status{
+  margin-top: 10px;
+}
+.time-status p{
+  font-weight: 300;
+  color: #677c8f;
+}
+p.time-status {
+  font-weight: 300;
+  color: #677c8f;
+}
+.progress-wallet{
+  margin-top: 20px;
+}
+.virtual-scroll-wallet{
+  margin-bottom: 20px;
+}
+::-webkit-scrollbar-button {
+  background-repeat:no-repeat;
+  width:6px;
+  height:0px
+}
+
+::-webkit-scrollbar-track {
+  background-color:#ccc;
+  /*box-shadow:0px 0px 3px #000 inset;*/
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background-color:#ffcb17;
+  box-shadow:0px 1px 1px #fff inset;
+  background-image:url('https://yraaa.ru/_pu/24/59610063.png');
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+::-webkit-resizer{
+  background-repeat:no-repeat;
+  width:7px;
+  height:0px
+}
+
+::-webkit-scrollbar{
+  width: 11px;
+}
+/*костыль УБЕРИ!!!!*/
+.custom-offset{
+  margin-left: 8.333333%;
+}
+/*костыль УБЕРИ!!!!*/
+.value-cars{
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+}
+/*.value-cars span:last-child{*/
+/*  justify-content: flex-end;*/
+/*  margin-left: auto;*/
+/* }*/
+.value-cars .second-flex{
+  justify-content: flex-end;
+  margin-left: auto;
+ }
+.value-cars .second-flex span{
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.value-cars span{
+  color: #677c8f;
+  font-weight: 300;
+  font-size: 20px;
+  justify-content: center;
+}
+.campaign-status-wallet span{
+  color: #677c8f;
+  font-weight: 300;
+  font-size: 20px;
+  float: right;
+}
+.trendMoney{
+  float: right;
+  font-size: 15px!important;
+}
+.recursion-card{
+  background-color: #7f8a99;
+}
+
+.ulforwallet li{
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: 5px;
+
+}
+/*.ulforwallet li:first-of-type mat-icon {*/
+/*  font-size: 18px;*/
+/*}*/
+
+.ulforwallet li:last-of-type{
+  font-size: 16px;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+.ulforwallet li span{
+  font-size: 20px;
+  color: #000000;
+  margin-right: 5px;
+}
+.ulforwallet li mat-icon{
+  margin-right: 5px;
+}
+mat-icon{
+  vertical-align: middle;
+}
+.warn-empty{
+  font-weight: 300;
+}
