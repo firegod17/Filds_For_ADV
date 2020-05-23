@@ -1,3 +1,7 @@
+.home-main{
+  height: 700px;
+}
+
 .firststep_adv {
   display: flex;
   flex-direction: column;

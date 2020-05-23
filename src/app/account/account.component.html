@@ -1,21 +1,34 @@
-<h1>Hi {{currentUser.companyName}}!</h1>
-<p>Welcome to home page!!</p>
-<!-- <button mat-raised-button *ngIf="currentUser" color="primary"  (click)="logout()">Logout</button> -->
-<h3>Name Of Your Company</h3>
-<p>{{currentUser.companyName}} </p>
-<h3>Your Email</h3>
-<p>{{currentUser.email}} </p>
-<h4>Info about your order</h4>
-<h6>Km: </h6>
-<p>{{currentUser.km}} </p>
-<h6>Car: </h6>
-<p>{{currentUser.car}} </p>
-<h6>Type of car: </h6>
-<p>{{currentUser.type_car}} </p>
-<h6>Count of cars: </h6>
-<p>{{currentUser.numb_cars}} </p>
-<h6>Start: </h6>
-<p>{{currentUser.data_start}} </p>
+<div class="row">
+  <div class="col-md-6 offset-md-3 account-style">
+    <mat-card>
+      <h1>Hi {{currentUser.companyName}}!</h1>
+      <p>Welcome to home page!!</p>
+      <!-- <button mat-raised-button *ngIf="currentUser" color="primary"  (click)="logout()">Logout</button> -->
+      <h3>Name Of Your Company</h3>
+      <p>{{currentUser.companyName}} </p>
+      <h3>Your Email</h3>
+      <p>{{currentUser.email}} </p>
+      <h4>Info about your order</h4>
+      <ul *ngFor="let AdditionalInfo of AdditionalInfos; let i = index">
+        <h5>Campaign {{i + 1}}</h5>
+        <li><h6>Km: </h6>
+          <p>{{AdditionalInfo.km}} </p></li>
+        <li><h6>Car: </h6>
+          <p>{{AdditionalInfo.car}} </p></li>
+        <li> <h6>Type of car: </h6>
+          <p>{{AdditionalInfo.type_car}} </p></li>
+        <li><h6>Count of cars: </h6>
+          <p>{{AdditionalInfo.numb_cars}} </p></li>
+        <li><h6>Start: </h6>
+          <p>{{AdditionalInfo.data_start}} </p></li>
+        <mat-divider></mat-divider>
+      </ul>
+    </mat-card>
+  </div>
+</div>
+
+
+
 
 <div class="row">
   <div class="col-md-6">

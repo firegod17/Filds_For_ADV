@@ -26,16 +26,16 @@ export class StatistickComponent implements OnInit {
    }
 
    ngOnInit() {
-     this.authenticationService.statistick()
-        .subscribe(
-            data => {
-              console.log(data);
-              this.myRecCollection = data;
-            },
-            error => {
-              this.toastr.error(error.message, 'Error');
-              console.log(error.message);
-            });
+     // this.authenticationService.carsInCampaign()
+     //    .subscribe(
+     //        data => {
+     //          console.log(data);
+     //          this.myRecCollection = data;
+     //        },
+     //        error => {
+     //          this.toastr.error(error.message, 'Error');
+     //          console.log(error.message);
+     //        });
     }
 
 

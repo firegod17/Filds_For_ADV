@@ -31,8 +31,9 @@ export class AuthenticationService {
                 return user;
             }));
     }
-    statistick() {
-        return this.http.get<any>(`api/getStatistickAdv`)
+  carsInCampaign(idCampaign, token: string ) {
+    const myHeaders = new HttpHeaders().set('auth-token', token);
+    return this.http.post<any>(`api/carsInCampaign`, {_id: idCampaign}, {headers: myHeaders})
             .pipe(map(user => {
                 return user;
             }));
@@ -52,8 +53,7 @@ export class AuthenticationService {
     checkStatus(token: string) {
 
       const myHeaders = new HttpHeaders().set('auth-token', token);
-          
-        return this.http.get<any>(`api/checkStatus/Adv`, {headers: myHeaders})
+      return this.http.get<any>(`api/checkStatus/Adv`, {headers: myHeaders})
             .pipe(map(user => {
                 if (user && user.token) {
                     // store user details in local storage to keep user logged in
@@ -68,6 +68,7 @@ export class AuthenticationService {
     logout() {
         // remove user data from local storage for log out
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('additionalInfo');
         this.currentUserSubject.next(null);
     }
 }

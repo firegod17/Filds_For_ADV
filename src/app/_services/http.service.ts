@@ -41,11 +41,22 @@ export class HttpService {
               return user;
           }));
   }
+  AdvAdditional(token: string) {
+    const myHeaders = new HttpHeaders().set('auth-token', token);
+    return this.http.get<any>(`api/checkStatus/AdvAdditionalInfo`,  {headers: myHeaders})
+      .pipe(map(user => {
+        console.log(user);
+        localStorage.setItem('additionalInfo', JSON.stringify(user));
+        return user;
+      }));
+  }
   walletAdd(inputMoney: number, token: string) {
     const myHeaders = new HttpHeaders().set('auth-token', token);
+    // tslint:disable-next-line:radix
+    const inputM = parseInt(String(inputMoney));
     const inputmoney = inputMoney;
     console.log(inputmoney);
-    return this.http.post<any>(`api/money/advPay`, {money: inputmoney}, {headers: myHeaders})
+    return this.http.post<any>(`api/money/advPay`, {money: inputM}, {headers: myHeaders})
       .pipe(map(user => {
         console.log(user);
         return user;
@@ -57,6 +68,14 @@ export class HttpService {
       .pipe(map((response: Response) => {
         console.log('mock data' + response.json());
         return response.json();
+      }));
+  }
+  startCampaign(idCampaign: string, token: string) {
+    const myHeaders = new HttpHeaders().set('auth-token', token);
+    return this.http.post<any>(`api/money/startCampaign`, {_id: idCampaign}, {headers: myHeaders})
+      .pipe(map(status => {
+        console.log(status);
+        return status;
       }));
   }
 

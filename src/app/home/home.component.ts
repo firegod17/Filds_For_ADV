@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../_services';
 import { HttpService } from '../_services';
+import {BehaviorSubject} from 'rxjs';
+import {User} from '../_models';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +19,7 @@ export class HomeComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   public currentUser;
+  public selected;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,8 +70,7 @@ export class HomeComponent implements OnInit {
 
             this.loading = false;
           });
-
-  }
+   }
 }
 
 

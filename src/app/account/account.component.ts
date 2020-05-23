@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { HttpService } from '../_services';
+import {BehaviorSubject} from 'rxjs';
+import {User} from '../_models';
 
 @Component({
   selector: 'app-home',
@@ -13,18 +15,32 @@ import { HttpService } from '../_services';
 })
 export class AccountComponent implements OnInit {
   public currentUser;
+  public AdditionalInfos;
   loading = false;
 
   constructor(
     private router: Router,
+    private httpService: HttpService,
+    private toastr: ToastrService
   ) {
-    this.currentUser = localStorage.getItem('currentUser')? JSON.parse(localStorage.getItem('currentUser')) : '';
+    this.currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : '';
    }
 
    ngOnInit() {
-     if (this.currentUser.status == "unverified") {
+     if (this.currentUser.status === 'unverified') {
        this.router.navigate(['/home']);
      }
+     this.httpService.AdvAdditional(this.currentUser.token)
+       .subscribe(
+         data => {
+           localStorage.setItem('additionalInfo', JSON.stringify(data));
+           this.AdditionalInfos = localStorage.getItem('additionalInfo') ? JSON.parse(localStorage.getItem('additionalInfo')) : '';
+         },
+         error => {
+           this.toastr.error(error.message, 'Error');
+           console.log(error);
+           this.loading = false;
+         });
     }
 
   statistick() {

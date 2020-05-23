@@ -7,7 +7,8 @@ import { AuthenticationService } from '../_services';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit {
      this.authenticationService.login(this.fval.email.value, this.fval.password.value)
         .subscribe(
             data => {
-              this.router.navigate(['/account']);
+               this.router.navigate(['/account']);
             },
             error => {
               this.toastr.error(error.error, 'Error status: ' + error.status);
